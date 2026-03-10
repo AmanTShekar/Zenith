@@ -12,7 +12,7 @@ export default function MagneticCursor() {
     const smoothY = useSpring(cursorY, springConfig);
 
     const canvasRef = useRef<HTMLCanvasElement>(null);
-    const animRef = useRef<number>();
+    const animRef = useRef<number | null>(null);
     const mousePos = useRef({ x: -100, y: -100 });
 
     const handleMouseMove = useCallback(

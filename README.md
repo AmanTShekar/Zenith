@@ -2,7 +2,7 @@
 
 This repository contains the Zenith IDE project.
 
-![Zenith Showcase Banner](https://github.com/AmanTShekar/Travel-blog-SIte-Template/blob/main/Screenshot%202026-03-24%20211146.png)
+![Zenith Showcase Banner](https://github.com/AmanTShekar/Zenith/blob/master/Screenshot%202026-03-24%20212610.png)
 
 ## Directory Structure
 

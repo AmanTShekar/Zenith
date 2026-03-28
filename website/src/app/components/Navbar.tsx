@@ -66,11 +66,10 @@ export default function Navbar() {
                     ) : (
                         <>
                             {[
-                                { n: "Editor", h: "#demo" },
+                                { n: "Extension", h: "#launching-on-vscode" },
                                 { n: "Features", h: "#features" },
-                                { n: "Specs", h: "#engine" },
-                                { n: "Roadmap", h: "#roadmap" },
-                                { n: "Docs", h: "/docs" }
+                                { n: "Engine", h: "#engine" },
+                                { n: "Roadmap", h: "#roadmap" }
                             ].map((item) => (
                                 <Link
                                     key={item.n}
@@ -88,7 +87,7 @@ export default function Navbar() {
                 <div className="flex items-center gap-3" style={{ zIndex: 20, position: "relative" }}>
                     {/* GitHub Link */}
                     <a
-                        href="https://github.com/AmanTShekar"
+                        href="https://github.com/AmanTShekar/Zenith-Extension"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="hidden md:inline-flex items-center justify-center hover:bg-white/[0.04] transition-all rounded-lg p-2"
@@ -100,14 +99,14 @@ export default function Navbar() {
                     </a>
 
                     <a
-                        href="#download"
+                        href="#roadmap"
                         className={`hidden md:inline-flex items-center justify-center hover:bg-white/[0.04] border border-white/10 hover:border-white/20 transition-all ${isDocs ? "!hidden" : ""}`}
                         style={{ borderRadius: 8, padding: "10px 20px", fontSize: 13, fontWeight: 600, color: "#fff", textDecoration: "none" }}
                     >
                         {isDocs ? (
                             null
                         ) : (
-                            <><span className="text-[#00F0FF] mr-2">/</span> Join Waitlist</>
+                            <><span className="text-[#00F0FF] mr-2">/</span> Notify Me on Launch</>
                         )}
                     </a>
 
@@ -132,12 +131,11 @@ export default function Navbar() {
                                 {(isDocs
                                     ? [{ n: "← HOME", h: "/" }, { n: "DOCS", h: "/docs" }]
                                     : [
-                                        { n: "EDITOR", h: "#demo" },
+                                        { n: "EXTENSION", h: "#launching-on-vscode" },
                                         { n: "FEATURES", h: "#features" },
-                                        { n: "SPECS", h: "#engine" },
+                                        { n: "ENGINE", h: "#engine" },
                                         { n: "ROADMAP", h: "#roadmap" },
-                                        { n: "DOCS", h: "/docs" },
-                                        { n: "CONTRIBUTE", h: "/contribute" },
+                                        { n: "CONTRIBUTE", h: "#contribute" },
                                     ]
                                 ).map((item) => (
                                     <Link
@@ -151,7 +149,7 @@ export default function Navbar() {
                                 ))}
                                 <div style={{ height: 1, background: "rgba(255,255,255,0.06)" }} />
                                 <a
-                                    href="https://github.com/AmanTShekar"
+                                    href="https://github.com/AmanTShekar/Zenith-Extension"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     onClick={() => setIsOpen(false)}

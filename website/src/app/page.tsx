@@ -5,6 +5,18 @@ import dynamic from "next/dynamic";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
+import { 
+  Github, 
+  Globe, 
+  Users, 
+  Zap, 
+  ChevronRight,
+  Code2,
+  Layers,
+  Sparkles,
+  ShieldCheck
+} from "lucide-react";
+
 const SurgicalMirror = dynamic(() => import("./components/SurgicalMirror"), { ssr: false });
 const NoiseOverlay = dynamic(() => import("./components/NoiseOverlay"), { ssr: false });
 const Navbar = dynamic(() => import("./components/Navbar"), { ssr: false });
@@ -21,7 +33,7 @@ const CONTAINER = "max-w-[1200px] mx-auto px-6 md:px-12 w-full";
 
 function Badge({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#00F0FF]/20 bg-[#00F0FF]/5 text-[11px] font-mono tracking-widest text-[#00F0FF]/80 uppercase">
+    <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#00F0FF]/30 bg-[#00F0FF]/10 backdrop-blur-md text-[11px] font-mono tracking-widest text-[#00F0FF] uppercase shadow-[0_0_20px_rgba(0,240,255,0.15)]">
       {children}
     </span>
   );
@@ -30,7 +42,7 @@ function Badge({ children }: { children: React.ReactNode }) {
 function SectionLabel({ label }: { label: string }) {
   return (
     <div className="flex items-center gap-3 mb-6">
-      <div className="w-8 h-px bg-[#00F0FF]/40" />
+      <div className="w-8 h-px bg-[#00F0FF]/40 shadow-[0_0_8px_rgba(0,240,255,0.5)]" />
       <span className="text-[11px] font-mono tracking-[0.2em] text-[#00F0FF]/60 uppercase">{label}</span>
     </div>
   );
@@ -42,64 +54,132 @@ function SectionLabel({ label }: { label: string }) {
 
 function HeroSection() {
   return (
-    <section id="hero" className="relative pt-40 pb-24 overflow-hidden">
-      <div className={`${CONTAINER} relative z-10`}>
+    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <div className={`${CONTAINER} relative z-10 py-20`}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
           className="text-center max-w-4xl mx-auto"
         >
-          <Badge>Built on VS Code · Coming Soon</Badge>
+          <Badge>ZENITH · THE DESIGN OS · COMING SOON</Badge>
 
           <h1 className="mt-8 text-[clamp(40px,7vw,84px)] font-bold tracking-tight leading-[0.95] text-white">
-            The IDE that sees<br />
-            <span className="text-[#00F0FF]">what you see.</span>
+            Architecture for the <br />
+            <span className="text-[#00F0FF]">Next-Gen IDE.</span>
           </h1>
 
           <p className="mt-8 max-w-2xl mx-auto text-lg md:text-xl text-white/50 leading-relaxed">
-            Drag, resize, and restyle your UI — Zenith translates every visual action into a precise, single-line AST patch. No file rewrites. No diff noise. Just clean code.
+            Design at the speed of thought. Zenith is evolving into a full-scale Design OS — a standalone architectural environment for the modern developer.
           </p>
 
           <div className="mt-10 flex flex-wrap gap-4 justify-center">
-            <a href="#download" className="inline-flex items-center gap-3 px-8 py-4 bg-[#00F0FF] text-black font-semibold text-sm tracking-wide rounded-lg hover:bg-[#00D4E0] transition-colors">
-              Join the Waitlist →
+            <a href="#launching-on-vscode" className="inline-flex items-center gap-3 px-8 py-4 bg-[#00F0FF] text-black font-semibold text-sm tracking-wide rounded-lg hover:bg-[#00D4E0] transition-all shadow-[0_0_20px_rgba(0,240,255,0.3)] hover:shadow-[0_0_30px_rgba(0,240,255,0.5)]">
+               Notify Me on Launch
             </a>
-            <a href="#demo" className="inline-flex items-center gap-3 px-8 py-4 border border-white/10 text-white/70 font-medium text-sm tracking-wide rounded-lg hover:bg-white/5 transition-colors">
-              See it in action
+            <a href="https://github.com/AmanTShekar/Zenith-Extension" target="_blank" className="inline-flex items-center gap-3 px-8 py-4 border border-white/10 text-white/70 font-medium text-sm tracking-wide rounded-lg hover:bg-white/5 transition-colors group">
+              Watch Development <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
             </a>
           </div>
-
-          <p className="mt-6 text-xs text-white/20">
-            Coming to Windows, macOS, and Linux. Free and open source.
-          </p>
         </motion.div>
       </div>
 
-      {/* Editor Preview — Full Bleed */}
-      <motion.div
-        initial={{ opacity: 0, y: 50, scale: 0.97 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        transition={{ duration: 1, delay: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
-        className="relative z-10 mt-20 mx-auto w-full max-w-[1400px] px-4 md:px-8"
-      >
-        <div className="rounded-2xl border border-white/10 overflow-hidden shadow-2xl shadow-[#00F0FF]/5 bg-[#0a0a0a]">
-          <div className="flex items-center gap-2 px-4 py-3 border-b border-white/5 bg-[#0c0c0c]">
-            <div className="w-3 h-3 rounded-full bg-white/10" />
-            <div className="w-3 h-3 rounded-full bg-white/10" />
-            <div className="w-3 h-3 rounded-full bg-white/10" />
-            <span className="ml-3 text-[11px] font-mono text-white/20">Zenith — Visual Editor</span>
+
+      {/* Background Gradients */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-[#00F0FF]/5 blur-[120px] rounded-full pointer-events-none" />
+        <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-white/5 blur-[100px] rounded-full pointer-events-none" />
+      </div>
+    </section>
+  );
+}
+
+/* ═══════════════════════════════════════ */
+/*  [01B] EXTENSION SHOWCASE                */
+/* ═══════════════════════════════════════ */
+
+function ExtensionShowcase() {
+  const cards = [
+    { label: "GITHUB", icon: <Github size={18} />, link: "https://github.com/AmanTShekar/Zenith-Extension", description: "Source Code" },
+    { label: "CREATOR", icon: <Globe size={18} />, link: "https://amantshekar.com", description: "Aman T Shekar" },
+    { label: "CONTRIBUTE", icon: <Users size={18} />, link: "#roadmap", description: "Join Community" },
+    { label: "WAITLIST", icon: <Zap size={18} />, link: "#roadmap", description: "Join Next Phase", primary: true },
+  ];
+
+  return (
+    <section id="launching-on-vscode" className="relative py-32 overflow-hidden border-t border-white/5 bg-[#050505]">
+      <div className={CONTAINER}>
+        <div className="flex flex-col items-center text-center">
+          <Badge>ZENITH FOR VS CODE · LIVE PREVIEW</Badge>
+          <h2 className="mt-8 text-3xl md:text-5xl font-bold text-white tracking-tight">
+             Bringing Visual Design to <br />
+             <span className="text-[#00F0FF]">Your Current Workflow.</span>
+          </h2>
+          <p className="mt-6 text-white/40 max-w-2xl leading-relaxed text-lg">
+            Surgical visual editing is now a reality. We are launching a first-class extension to power your existing setup.
+          </p>
+
+          <div className="mt-20 w-full grid lg:grid-cols-12 gap-16 items-center">
+            <div className="lg:col-span-12">
+               <div className="relative w-full max-w-4xl mx-auto">
+                 <div className="absolute -inset-1 bg-[#00F0FF]/15 rounded-2xl blur-2xl opacity-40"></div>
+                 <div className="relative rounded-2xl border border-white/10 overflow-hidden shadow-2xl bg-[#0a0a0a]">
+                   <div className="flex items-center justify-between px-4 py-3 border-b border-white/5 bg-[#0c0c0c]">
+                     <div className="flex gap-1.5">
+                       <div className="w-2.5 h-2.5 rounded-full bg-white/10" />
+                       <div className="w-2.5 h-2.5 rounded-full bg-white/10" />
+                       <div className="w-2.5 h-2.5 rounded-full bg-white/10" />
+                     </div>
+                     <span className="text-[10px] font-mono text-white/20 uppercase tracking-[0.2em]">VS Code Extension Preview</span>
+                   </div>
+                   
+                   <div className="relative">
+                      <Image
+                        src="/Screenshot 2026-03-28 213258.png"
+                        alt="Zenith extension live preview"
+                        width={1200}
+                        height={800}
+                        className="w-full max-h-[520px] object-cover object-top"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/80 via-transparent to-transparent"></div>
+                   </div>
+                 </div>
+               </div>
+            </div>
+            
+            <div className="lg:col-span-12 mt-12">
+               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-5xl mx-auto">
+                  {cards.map((card) => (
+                    <a 
+                      key={card.label} 
+                      href={card.link}
+                      target={card.link.startsWith("http") ? "_blank" : undefined}
+                      rel="noopener noreferrer"
+                      className={`group relative flex flex-col p-6 rounded-2xl border transition-all duration-300 transform hover:-translate-y-1 ${
+                        card.primary 
+                        ? "bg-[#00F0FF]/10 border-[#00F0FF]/30 hover:bg-[#00F0FF]/20" 
+                        : "bg-white/[0.02] border-white/5 hover:bg-white/[0.05] hover:border-white/10"
+                      }`}
+                    >
+                      <div className={`p-3 rounded-xl w-fit ${
+                        card.primary ? "bg-[#00F0FF] text-black" : "bg-white/5 text-[#00F0FF]"
+                      }`}>
+                        {card.icon}
+                      </div>
+                      <span className="mt-6 text-[11px] font-mono tracking-[0.2em] text-white/30 uppercase group-hover:text-white/60 transition-colors">
+                        {card.label}
+                      </span>
+                      <span className="mt-1 text-sm font-medium text-white group-hover:text-[#00F0FF] transition-colors flex items-center gap-1">
+                        {card.description}
+                        <ChevronRight size={14} className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
+                      </span>
+                    </a>
+                  ))}
+               </div>
+            </div>
           </div>
-          <Image
-            src="/editor-preview.png"
-            alt="Zenith IDE editor interface showing visual code editing with AST patching"
-            width={1400}
-            height={800}
-            className="w-full h-auto block"
-            priority
-          />
         </div>
-      </motion.div>
+      </div>
 
       {/* Marketing Stats Bar */}
       <div className="relative z-10 mt-20">
@@ -109,7 +189,7 @@ function HeroSection() {
               { value: "<0.3ms", label: "Patch latency" },
               { value: "0 files", label: "Rewritten per change" },
               { value: "24+", label: "Languages supported" },
-              { value: "100%", label: "VS Code compatible" },
+              { value: "Native", label: "VS Code Extension" },
             ].map(stat => (
               <div key={stat.label} className="text-center">
                 <div className="text-xl md:text-2xl font-bold text-[#00F0FF]">{stat.value}</div>
@@ -205,6 +285,7 @@ function VisualEditingSection() {
     </section>
   );
 }
+
 /* ═══════════════════════════════════════ */
 /*  [03B] WHY VISUAL EDITING               */
 /* ═══════════════════════════════════════ */
@@ -293,12 +374,12 @@ function AgentModeSection() {
       <div className={CONTAINER}>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
           <div className="lg:col-span-6">
-            <SectionLabel label="AI Agents" />
+            <SectionLabel label="Surgical AI" />
             <h2 className="text-[clamp(28px,4vw,48px)] font-bold tracking-tight leading-[1.1] text-white">
-              Three agents.<br />One codebase.
+              Surgical precision.<br />Zero diff noise.
             </h2>
             <p className="mt-6 text-lg text-white/40 leading-relaxed">
-              Zenith doesn&apos;t use a single AI that guesses everything. It deploys three specialized agents that collaborate — each responsible for a distinct layer of your project.
+              The Zenith extension doesn&apos;t just generate code. It uses a high-performance Rust sidecar to surgically patch your AST in real-time. No full file rewrites, just the exact change you intended.
             </p>
           </div>
           <div className="lg:col-span-6 space-y-4">
@@ -351,13 +432,13 @@ function BuiltOnVSCode() {
     <section id="features" className="py-32 md:py-40 border-t border-white/5">
       <div className={CONTAINER}>
         <div className="text-center mb-20">
-          <SectionLabel label="Foundation" />
+          <SectionLabel label="Integration" />
           <h2 className="text-[clamp(28px,4vw,52px)] font-bold tracking-tight leading-[1.1] text-white">
-            Everything you love about VS Code.<br />
-            <span className="text-white/40">Plus everything it can&apos;t do.</span>
+            Your VS Code,<br />
+            <span className="text-white/40">Supercharged.</span>
           </h2>
           <p className="mt-6 text-lg text-white/40 max-w-2xl mx-auto leading-relaxed">
-            Zenith is built on the VS Code architecture. Your extensions, keybindings, themes, and settings all carry over. We add the visual layer on top.
+            Zenith is now a native VS Code extension. Your extensions, keybindings, themes, and settings stay exactly as they are. We just add the missing visual layer on top.
           </p>
         </div>
 
@@ -642,40 +723,21 @@ function ContributeSection() {
 
             {/* CTA Buttons */}
             <div className="mt-10 flex flex-wrap gap-3">
-              <a href="#" className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-white/[0.06] border border-white/10 text-white/80 text-sm font-medium hover:bg-white/[0.1] hover:border-white/20 transition-all">
-                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" /></svg>
-                View on GitHub
+              <a href="https://github.com/AmanTShekar/Zenith-Extension" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-white/[0.06] border border-white/10 text-white/80 text-sm font-medium hover:bg-white/[0.1] hover:border-white/20 transition-all">
+                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" /></svg> Star on GitHub
               </a>
               <a href="/docs" className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-[#00F0FF]/10 border border-[#00F0FF]/20 text-[#00F0FF]/80 text-sm font-medium hover:bg-[#00F0FF]/15 hover:border-[#00F0FF]/30 transition-all">
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>
-                Documentation
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg> Documentation
               </a>
             </div>
           </div>
 
-          {/* Right — Contribution cards */}
           <div className="space-y-4">
             {[
-              {
-                title: "AST Patching Engine",
-                description: "The core Rust engine that parses source code into traversable syntax trees and applies surgical, non-destructive patches.",
-                tag: "Rust · Core",
-              },
-              {
-                title: "Language Adapters",
-                description: "Add support for new languages and frameworks. Each adapter maps framework-specific AST nodes to Zenith's visual primitives.",
-                tag: "TypeScript · Adapters",
-              },
-              {
-                title: "Visual Sync Bridge",
-                description: "The CRDT-based synchronization layer that keeps the visual canvas and source code perfectly in sync in real-time.",
-                tag: "Rust · Sync",
-              },
-              {
-                title: "Documentation & Guides",
-                description: "Write tutorials, improve API docs, or create video walkthroughs. Great first contributions for new contributors.",
-                tag: "Markdown · Docs",
-              },
+              { title: "AST Patching Engine", description: "The core Rust engine that parses source code into traversable syntax trees and applies surgical, non-destructive patches.", tag: "Rust · Core" },
+              { title: "Language Adapters", description: "Add support for new languages and frameworks. Each adapter maps framework-specific AST nodes to Zenith's visual primitives.", tag: "TypeScript · Adapters" },
+              { title: "Visual Sync Bridge", description: "The CRDT-based synchronization layer that keeps the visual canvas and source code perfectly in sync in real-time.", tag: "Rust · Sync" },
+              { title: "Documentation & Guides", description: "Write tutorials, improve API docs, or create video walkthroughs. Great first contributions for new contributors.", tag: "Markdown · Docs" },
             ].map((item, i) => (
               <motion.div
                 key={item.title}
@@ -695,281 +757,247 @@ function ContributeSection() {
             ))}
           </div>
         </div>
-
-        {/* Open Source Highlights */}
-        <div className="mt-12 pt-8 border-t border-white/5">
-          <div className="flex flex-wrap items-center justify-between gap-6">
-            <div>
-              <div className="text-[10px] font-mono text-white/20 uppercase tracking-[0.2em] mb-3">Built With</div>
-              <div className="flex flex-wrap gap-3">
-                {[
-                  { label: "AST Engine", value: "Rust" },
-                  { label: "Extension", value: "TypeScript" },
-                  { label: "Base Editor", value: "VS Code" },
-                  { label: "License", value: "MIT" },
-                ].map(s => (
-                  <div key={s.label} className="flex items-center gap-2 px-3 py-2 rounded-lg bg-white/[0.03] border border-white/5">
-                    <span className="text-sm font-bold text-white/60">{s.value}</span>
-                    <span className="text-[10px] text-white/25">{s.label}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <a href="/contribute" className="text-xs font-mono text-[#00F0FF]/40 hover:text-[#00F0FF]/70 transition-colors">
-              How to contribute →
-            </a>
-          </div>
-        </div>
       </div>
     </section>
   );
 }
 
 /* ═══════════════════════════════════════ */
-/*  [10] ROADMAP                           */
+/*  [10] FINAL ROADMAP                     */
 /* ═══════════════════════════════════════ */
 
-function Roadmap() {
-  const phases = [
-    {
-      phase: "Phase 01",
-      title: "Foundation",
-      status: "completed" as const,
-      period: "Jan — Mar 2026",
-      features: [
-        "Core AST parser in Rust",
-        "VS Code extension architecture",
-        "TypeScript & React adapters",
-        "Basic visual selection & inspection",
-      ],
+function RoadmapSection() {
+  const steps = [
+    { 
+      phase: "Phase 01", 
+      title: "Core Architecture", 
+      status: "Archived", 
+      desc: "Foundation of the Zenith ecosystem.",
+      milestones: [
+        "Rust Sidecar & AST Engine",
+        "Surgical Patch Compiler",
+        "Zero-copy VFS Implementation",
+        "Internal Alpha Testing"
+      ]
     },
-    {
-      phase: "Phase 02",
-      title: "Visual Engine",
-      status: "active" as const,
-      period: "Apr — Jun 2026",
-      features: [
-        "Drag & drop component editing",
-        "Surgical AST patching pipeline",
-        "Bi-directional canvas ↔ code sync",
-        "CSS property visual manipulation",
-      ],
+    { 
+      phase: "Phase 02", 
+      title: "VS Code Extension Launch", 
+      status: "Live Phase", 
+      active: true,
+      desc: "Bringing visual design to the modern developer's existing setup.",
+      milestones: [
+        "Public Beta Marketplace Launch",
+        "Real-time Shadow-Doc Mirroring",
+        "Multi-agent AI Swarm (Surgical)",
+        "Language Adapter Ecosystem"
+      ]
     },
-    {
-      phase: "Phase 03",
-      title: "AI Agents",
-      status: "upcoming" as const,
-      period: "Jul — Sep 2026",
-      features: [
-        "Multi-agent AI architecture",
-        "The Architect — structure & state",
-        "The Stylist — design tokens",
-        "The Auditor — perf & a11y monitoring",
-      ],
-    },
-    {
-      phase: "Phase 04",
-      title: "Public Beta",
-      status: "upcoming" as const,
-      period: "Oct — Nov 2026",
-      features: [
-        "Open beta release for all platforms",
-        "Community plugin ecosystem",
-        "Vue, Svelte, Angular adapters",
-        "Bug bash & community feedback cycle",
-      ],
-    },
-    {
-      phase: "Phase 05",
-      title: "Stable Release",
-      status: "upcoming" as const,
-      period: "Dec 2026",
-      features: [
-        "v1.0 stable release",
-        "Real-time collaborative editing",
-        "Cross-IDE sync bridge",
-        "Enterprise & team features",
-      ],
-    },
+    { 
+      phase: "Phase 03", 
+      title: "Standalone Design OS", 
+      status: "Vision Stage", 
+      desc: "The ultimate goal: A high-performance spatial architectural environment.",
+      milestones: [
+        "Native Rust/Electron Shell",
+        "Spatial Multi-document Canvas",
+        "Collaborative CRDT Protocol",
+        "Full Design Token Governance"
+      ]
+    }
   ];
 
   return (
-    <section id="roadmap" className="py-32 md:py-40 bg-[#020202]">
+    <section id="roadmap" className="py-32 md:py-48 relative overflow-hidden">
       <div className={CONTAINER}>
-        <div className="mb-20">
-          <SectionLabel label="Roadmap" />
-          <h2 className="text-[clamp(28px,4vw,48px)] font-bold tracking-tight leading-[1.1] text-white">
-            Where we&apos;re headed.
-          </h2>
-          <p className="mt-4 text-base text-white/30 max-w-lg">
-            A transparent look at our development timeline. Here&apos;s exactly where we are and what&apos;s coming.
-          </p>
-
-          {/* Current Status Badge */}
-          <div className="mt-6 inline-flex items-center gap-3 px-4 py-2 rounded-full border border-[#00F0FF]/20 bg-[#00F0FF]/[0.04]">
-            <div className="w-2 h-2 rounded-full bg-[#00F0FF] animate-pulse" />
-            <span className="text-sm text-[#00F0FF]/80">Currently in Phase 02 — Visual Engine</span>
-          </div>
+        <div className="text-center mb-24">
+          <SectionLabel label="The Path Early Access" />
+          <h2 className="text-4xl md:text-6xl font-bold text-white tracking-tight">The Path to <span className="text-[#00F0FF]">Design OS.</span></h2>
+          <p className="mt-6 text-white/30 max-w-2xl mx-auto">Our progression from a surgical extension to a world-class architectural design environment.</p>
         </div>
 
-        {/* Vertical Timeline */}
-        <div className="relative">
-          {/* Vertical line */}
-          <div className="absolute left-[15px] md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-[#00F0FF]/20 via-white/10 to-white/5 md:-translate-x-px" />
-
-          <div className="space-y-12">
-            {phases.map((p, i) => {
-              const isLeft = i % 2 === 0;
-              return (
-                <motion.div
-                  key={p.phase}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: i * 0.08 }}
-                  className={`relative grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16`}
-                >
-                  {/* Timeline dot */}
-                  <div className="absolute left-[15px] md:left-1/2 -translate-x-1/2 top-2 z-10">
-                    <div className={`w-[14px] h-[14px] rounded-full border-2 ${p.status === "completed" ? "bg-[#00F0FF] border-[#00F0FF] shadow-[0_0_10px_rgba(0,240,255,0.4)]" :
-                      p.status === "active" ? "bg-[#00F0FF]/50 border-[#00F0FF] shadow-[0_0_10px_rgba(0,240,255,0.3)] animate-pulse" :
-                        "bg-transparent border-white/20"
-                      }`} />
+        <div className="relative max-w-4xl mx-auto">
+          {/* Vertical Connection Line */}
+          <div className="absolute left-[31px] md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-white/10 via-white/5 to-transparent -translate-x-1/2" />
+          
+          <div className="space-y-24">
+            {steps.map((step, i) => (
+              <motion.div
+                key={step.phase}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                className={`relative flex flex-col md:flex-row gap-12 ${i % 2 === 1 ? "md:flex-row-reverse" : ""}`}
+              >
+                {/* Center Node */}
+                <div className="absolute left-[31px] md:left-1/2 -translate-x-1/2 top-0 z-20">
+                  <div className={`w-16 h-16 rounded-2xl flex items-center justify-center border backdrop-blur-xl ${
+                    step.active ? "bg-[#00F0FF]/10 border-[#00F0FF]/40 shadow-[0_0_20px_rgba(0,240,255,0.2)]" : "bg-white/[0.03] border-white/10"
+                  }`}>
+                    <span className={`text-sm font-mono font-bold ${step.active ? "text-[#00F0FF]" : "text-white/20"}`}>
+                      0{i + 1}
+                    </span>
+                    {step.active && (
+                      <div className="absolute inset-0 rounded-2xl border border-[#00F0FF] animate-pulse opacity-20" />
+                    )}
                   </div>
-
-                  {/* Content — alternating sides on desktop */}
-                  <div className={`pl-10 md:pl-0 ${isLeft ? "md:pr-16 md:text-right" : "md:col-start-2 md:pl-16"}`}>
-                    <div className={`p-6 rounded-2xl border transition-all ${p.status === "completed" ? "border-[#00F0FF]/10 bg-[#00F0FF]/[0.01]" :
-                      p.status === "active" ? "border-[#00F0FF]/20 bg-[#00F0FF]/[0.03]" :
-                        "border-white/5 bg-white/[0.01]"
-                      }`}>
-                      <div className={`flex items-center gap-3 mb-3 ${isLeft ? "md:justify-end" : ""}`}>
-                        <span className={`text-[10px] font-mono uppercase tracking-widest ${p.status === "completed" ? "text-[#00F0FF]/40" :
-                          p.status === "active" ? "text-[#00F0FF]/60" :
-                            "text-white/20"
-                          }`}>{p.phase}</span>
-                        <span className={`text-[10px] font-mono px-2 py-0.5 rounded-full uppercase tracking-widest ${p.status === "completed" ? "bg-[#00F0FF]/10 text-[#00F0FF]/50 border border-[#00F0FF]/15" :
-                          p.status === "active" ? "bg-[#00F0FF]/15 text-[#00F0FF]/70 border border-[#00F0FF]/25" :
-                            "bg-white/[0.03] text-white/20 border border-white/5"
-                          }`}>{p.status === "completed" ? "Done" : p.status === "active" ? "In Progress" : "Planned"}</span>
-                      </div>
-                      <h3 className="text-lg font-bold text-white mb-1">{p.title}</h3>
-                      <p className={`text-xs mb-4 ${p.status === "active" ? "text-[#00F0FF]/40" : "text-white/20"}`}>{p.period}</p>
-                      <div className="space-y-2">
-                        {p.features.map(f => (
-                          <div key={f} className={`flex items-start gap-2 text-sm ${isLeft ? "md:justify-end" : ""}`}>
-                            <span className={`shrink-0 text-xs mt-0.5 ${isLeft ? "md:order-2" : ""} ${p.status === "completed" ? "text-[#00F0FF]/40" :
-                              p.status === "active" ? "text-[#00F0FF]/50" :
-                                "text-white/15"
-                              }`}>{p.status === "completed" ? "✓" : p.status === "active" ? "→" : "○"}</span>
-                            <span className={`${p.status === "completed" ? "text-white/30" :
-                              p.status === "active" ? "text-white/40" :
-                                "text-white/20"
-                              }`}>{f}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Empty cell for alternating layout */}
-                  {isLeft && <div className="hidden md:block" />}
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ═══════════════════════════════════════ */
-/*  [11] CONTACT / CTA                    */
-/* ═══════════════════════════════════════ */
-
-function CTASection() {
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
-
-  return (
-    <section id="download" className="py-32 md:py-40 border-t border-white/5 relative overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,240,255,0.03)_0%,transparent_60%)] pointer-events-none" />
-      <div className={CONTAINER}>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-          <div>
-            <SectionLabel label="Get in Touch" />
-            <h2 className="text-[clamp(28px,4vw,48px)] font-bold tracking-tight leading-[1.1] text-white">
-              Stay in the loop.
-            </h2>
-            <p className="mt-6 text-lg text-white/40 leading-relaxed">
-              We&apos;re building Zenith in the open. Drop your email to get notified at launch, or send us a message — we read every one.
-            </p>
-            <div className="mt-10 space-y-4">
-              {["Launch notifications — no spam, ever", "Early contributor access and previews", "Shape the product with direct feedback"].map(text => (
-                <div key={text} className="flex items-start gap-3">
-                  <span className="text-[#00F0FF]/50 text-xs mt-1">→</span>
-                  <span className="text-sm text-white/30">{text}</span>
                 </div>
-              ))}
-            </div>
-            <div className="mt-8 flex gap-4">
-              <a href="https://amantshekar.github.io" target="_blank" rel="noopener noreferrer" className="text-sm text-[#00F0FF]/50 hover:text-[#00F0FF] transition-colors">
-                Creator&apos;s Website →
-              </a>
-              <a href="https://github.com/AmanTShekar" target="_blank" rel="noopener noreferrer" className="text-sm text-white/30 hover:text-white/60 transition-colors">
-                GitHub →
-              </a>
-            </div>
-          </div>
-          <div className="p-8 md:p-10 rounded-2xl border border-white/5 bg-white/[0.015]">
-            <div className="space-y-5">
-              <div>
-                <label className="block text-xs text-white/30 uppercase tracking-wider mb-2">Email</label>
-                <input
-                  type="email"
-                  placeholder="your@email.com"
-                  className="w-full px-4 py-3 rounded-lg bg-white/[0.04] border border-white/10 text-white text-sm placeholder:text-white/15 outline-none focus:border-[#00F0FF]/30 transition-colors"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </div>
-              <div>
-                <label className="block text-xs text-white/30 uppercase tracking-wider mb-2">Message <span className="text-white/15">(optional)</span></label>
-                <textarea
-                  placeholder="What are you most excited about?"
-                  rows={4}
-                  className="w-full px-4 py-3 rounded-lg bg-white/[0.04] border border-white/10 text-white text-sm placeholder:text-white/15 outline-none focus:border-[#00F0FF]/30 transition-colors resize-none"
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                />
-              </div>
-              <button className="w-full px-6 py-3.5 rounded-lg bg-[#00F0FF] text-black font-semibold text-sm hover:bg-[#00D4E0] transition-colors">
-                Join the Waitlist
-              </button>
-              <p className="text-center text-[11px] text-white/15">
-                No spam. We&apos;ll notify you when Zenith launches.
-              </p>
-            </div>
+
+                {/* Content Side */}
+                <div className="flex-1 pl-20 md:pl-0">
+                  <div className={`p-8 rounded-3xl border bg-white/[0.02] backdrop-blur-sm transition-all duration-500 hover:border-white/10 ${
+                   step.active ? "border-[#00F0FF]/20 shadow-[0_0_40px_rgba(0,240,255,0.05)]" : "border-white/5"
+                  } ${i % 2 === 0 ? "md:mr-16 text-left md:text-right" : "md:ml-16 text-left"}`}>
+                    <div className={`flex items-center gap-3 mb-4 ${i % 2 === 0 ? "md:justify-end" : "justify-start"}`}>
+                      <span className="text-[10px] font-mono tracking-widest text-white/30 uppercase">{step.phase}</span>
+                      <span className={`text-[9px] font-mono px-2 py-0.5 rounded-full border ${
+                        step.status === "Archived" ? "border-green-500/30 text-green-500 bg-green-500/10" : 
+                        step.active ? "border-[#00F0FF]/30 text-[#00F0FF] bg-[#00F0FF]/10" : 
+                        "border-white/10 text-white/20"
+                      }`}>{step.status}</span>
+                    </div>
+                    <h3 className="text-xl font-bold text-white mb-4">{step.title}</h3>
+                    <p className="text-sm text-white/30 mb-8 leading-relaxed">{step.desc}</p>
+                    
+                    <ul className={`grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 ${i % 2 === 0 ? "md:justify-items-end" : ""}`}>
+                      {step.milestones.map((milestone) => (
+                        <li key={milestone} className="flex items-center gap-2 text-[11px] text-white/40 group">
+                          {i % 2 === 1 ? (
+                            <>
+                              <div className="w-1 h-1 rounded-full bg-[#00F0FF]/40 group-hover:bg-[#00F0FF] transition-colors" />
+                              <span className="group-hover:text-white/60 transition-colors">{milestone}</span>
+                            </>
+                          ) : (
+                            <>
+                              <span className="group-hover:text-white/60 transition-colors md:order-1">{milestone}</span>
+                              <div className="w-1 h-1 rounded-full bg-[#00F0FF]/40 group-hover:bg-[#00F0FF] transition-colors md:order-2" />
+                            </>
+                          )}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+
+                {/* Empty Side (Desktop) */}
+                <div className="hidden md:block flex-1" />
+              </motion.div>
+            ))}
           </div>
         </div>
+      </div>
+
+      {/* Background Decor */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full max-w-4xl pointer-events-none z-0">
+         <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-[#00F0FF]/5 blur-[150px] rounded-full" />
+         <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-white/5 blur-[120px] rounded-full" />
       </div>
     </section>
   );
 }
 
 /* ═══════════════════════════════════════ */
-/*  MAIN                                   */
+/*  [11] FOOTER                             */
 /* ═══════════════════════════════════════ */
 
-export default function Home() {
+function Footer() {
   return (
-    <main className="bg-[#050505] text-white min-h-screen">
+    <footer className="py-24 border-t border-white/5 bg-[#030303] relative overflow-hidden">
+      <div className={CONTAINER}>
+        <div className="grid grid-cols-2 md:grid-cols-12 gap-12 md:gap-8">
+          {/* Brand Column */}
+          <div className="col-span-2 md:col-span-4 flex flex-col items-start">
+            <div className="flex items-center gap-3">
+              <img src="/zenith.svg" alt="Zenith Logo" className="w-8 h-8 pointer-events-none" />
+              <span className="text-xl font-bold text-white tracking-tight">Zenith</span>
+            </div>
+            <p className="mt-6 text-sm text-white/20 max-w-xs leading-relaxed">
+              Building the next generation of visual development tools. From surgical extensions to a full-scale Design OS.
+            </p>
+            <div className="mt-8 flex gap-4">
+              <a href="https://github.com/AmanTShekar/Zenith-Extension" target="_blank" className="p-2 rounded-lg bg-white/[0.03] border border-white/5 text-white/30 hover:text-[#00F0FF] hover:border-[#00F0FF]/20 transition-all">
+                <Github size={18} />
+              </a>
+              <a href="https://amantshekar.com" target="_blank" className="p-2 rounded-lg bg-white/[0.03] border border-white/5 text-white/30 hover:text-[#00F0FF] hover:border-[#00F0FF]/20 transition-all">
+                <Globe size={18} />
+              </a>
+            </div>
+          </div>
+
+          {/* Links Columns */}
+          <div className="col-span-1 md:col-span-2 md:col-start-7">
+            <h4 className="text-[10px] font-mono tracking-[0.2em] text-white/20 uppercase mb-6">Product</h4>
+            <ul className="space-y-4">
+              {['Extension', 'Visual Editor', 'Surgical Engine', 'Pricing'].map(link => (
+                <li key={link}><a href="#" className="text-[13px] text-white/40 hover:text-white transition-colors">{link}</a></li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="col-span-1 md:col-span-2">
+            <h4 className="text-[10px] font-mono tracking-[0.2em] text-white/20 uppercase mb-6">Resources</h4>
+            <ul className="space-y-4">
+              {['Documentation', 'Roadmap', 'GitHub', 'Changelog'].map(link => (
+                <li key={link}>
+                  <a href={link === 'Roadmap' ? '#roadmap' : (link === 'GitHub' ? 'https://github.com/AmanTShekar/Zenith-Extension' : '#')} className="text-[13px] text-white/40 hover:text-white transition-colors">
+                    {link}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="col-span-2 md:col-span-2">
+            <h4 className="text-[10px] font-mono tracking-[0.2em] text-white/20 uppercase mb-6">Social</h4>
+            <ul className="space-y-4">
+              {['X / Twitter', 'Discord', 'YouTube', 'LinkedIn'].map(link => (
+                <li key={link}><a href="#" className="text-[13px] text-white/40 hover:text-white transition-colors">{link}</a></li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <div className="mt-24 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-[10px] font-mono text-white/10 uppercase tracking-widest">© 2026 ZENITH PROJECT · ALL RIGHTS RESERVED</p>
+          <div className="flex items-center gap-6">
+            <a href="#" className="text-[10px] font-mono text-white/10 hover:text-white transition-colors uppercase tracking-widest">Privacy</a>
+            <a href="#" className="text-[10px] font-mono text-white/10 hover:text-white transition-colors uppercase tracking-widest">Terms</a>
+            <p className="text-[10px] font-mono text-white/10 uppercase tracking-widest flex items-center gap-1.5 ml-4">
+              Crafted with <span className="text-red-500/50 italic">spatial intent</span>
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      {/* Decorative Blur */}
+      <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-[#00F0FF]/5 blur-[120px] rounded-full pointer-events-none" />
+    </footer>
+  );
+}
+
+/* ═══════════════════════════════════════ */
+/*  [MAIN] PAGE COMPONENT                  */
+/* ═══════════════════════════════════════ */
+
+export default function LandingPage() {
+  const [isWaitlistOpen, setIsWaitlistOpen] = useState(false);
+
+  // Scroll to top on fresh load/reload to prevent hydration scroll jumps
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+  }, []);
+
+  return (
+    <main className="min-h-screen bg-[#050505] text-white selection:bg-[#00F0FF]/30 selection:text-white">
       <NoiseOverlay />
       <Navbar />
-
+      
       <HeroSection />
       <LanguageTicker />
+      <ExtensionShowcase />
       <VisualEditingSection />
       <WhyVisualEditing />
       <AgentModeSection />
@@ -978,68 +1006,8 @@ export default function Home() {
       <EngineSection />
       <LanguageSupportSection />
       <ContributeSection />
-      <Roadmap />
-      <CTASection />
-
-      {/* Footer */}
-      <footer className="w-full border-t border-white/5">
-        <div className="w-full py-20 px-6 md:px-12 lg:px-20">
-          <div className="max-w-[1400px] mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-16 md:gap-8">
-              {/* Left — Large Zenith Wordmark */}
-              <div className="md:col-span-4">
-                <h3 className="text-[clamp(40px,6vw,64px)] font-bold tracking-tight leading-none text-white">
-                  Zenith
-                </h3>
-                <p className="mt-3 text-sm text-white/20">Visual-Agentic Code Editor</p>
-              </div>
-              {/* Right — Nav Columns */}
-              <div className="md:col-span-8 grid grid-cols-2 sm:grid-cols-3 gap-8">
-                <div>
-                  <div className="text-[10px] font-mono text-white/25 uppercase tracking-[0.2em] mb-5">Product</div>
-                  <div className="space-y-3">
-                    <a href="#features" className="block text-sm text-white/30 hover:text-white/60 transition-colors">Features</a>
-                    <a href="#demo" className="block text-sm text-white/30 hover:text-white/60 transition-colors">Visual Editor</a>
-                    <a href="#engine" className="block text-sm text-white/30 hover:text-white/60 transition-colors">Architecture</a>
-                    <a href="#roadmap" className="block text-sm text-white/30 hover:text-white/60 transition-colors">Roadmap</a>
-                  </div>
-                </div>
-                <div>
-                  <div className="text-[10px] font-mono text-white/25 uppercase tracking-[0.2em] mb-5">Resources</div>
-                  <div className="space-y-3">
-                    <a href="/docs" className="block text-sm text-white/30 hover:text-white/60 transition-colors">Documentation</a>
-                    <a href="/docs" className="block text-sm text-white/30 hover:text-white/60 transition-colors">API Reference</a>
-                    <a href="https://github.com/AmanTShekar" target="_blank" rel="noopener noreferrer" className="block text-sm text-white/30 hover:text-white/60 transition-colors">Changelog</a>
-                    <a href="/contribute" className="block text-sm text-white/30 hover:text-white/60 transition-colors">Contributing</a>
-                  </div>
-                </div>
-                <div>
-                  <div className="text-[10px] font-mono text-white/25 uppercase tracking-[0.2em] mb-5">Community</div>
-                  <div className="space-y-3">
-                    <a href="https://github.com/AmanTShekar" target="_blank" rel="noopener noreferrer" className="block text-sm text-white/30 hover:text-white/60 transition-colors">GitHub</a>
-                    <a href="#" className="block text-sm text-white/30 hover:text-white/60 transition-colors">Discord</a>
-                    <a href="#" className="block text-sm text-white/30 hover:text-white/60 transition-colors">Twitter / X</a>
-                    <a href="https://amantshekar.github.io" target="_blank" rel="noopener noreferrer" className="block text-sm text-white/30 hover:text-white/60 transition-colors">Creator&apos;s Website</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        {/* Bottom Bar */}
-        <div className="w-full border-t border-white/5 py-6 px-6 md:px-12 lg:px-20">
-          <div className="max-w-[1400px] mx-auto">
-            <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-              <span className="text-[11px] text-white/15">© 2026 Zenith IDE. Open source under MIT License.</span>
-              <div className="flex gap-6 text-[11px] text-white/15">
-                <a href="#" className="hover:text-white/30 transition-colors">Privacy</a>
-                <a href="#" className="hover:text-white/30 transition-colors">Terms</a>
-                <a href="#" className="hover:text-white/30 transition-colors">Security</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <RoadmapSection />
+      <Footer />
     </main>
   );
 }

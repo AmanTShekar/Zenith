@@ -1,0 +1,156 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: #050505;
+  --color-foreground: #ffffff;
+  --color-accent: #00F0FF;
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* ═══════════════════════════════════════════ */
+/*  ZENITH IDE — GLOBAL STYLESHEET             */
+/*  Synced with: page.tsx, Navbar.tsx,         */
+/*  SingularityHero.tsx, SurgicalMirror.tsx,   */
+/*  NoiseOverlay.tsx, MagneticCursor.tsx        */
+/* ═══════════════════════════════════════════ */
+
+/* ─── Smooth Scroll ─── */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ─── Body ─── */
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  line-height: 1.6;
+  scroll-padding-top: 80px;
+
+  /* Subtle engineering grid texture */
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.012) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.012) 1px, transparent 1px);
+  background-size: 48px 48px;
+  background-attachment: fixed;
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* ─── Selection ─── */
+::selection {
+  background: rgba(0, 240, 255, 0.3);
+  color: #ffffff;
+}
+
+/* ═══════════════════════════════════════════ */
+/*  GPU ACCELERATION                           */
+/*  Used by: SingularityHero.tsx (glow ring,   */
+/*  singularity morph), MagneticCursor.tsx      */
+/* ═══════════════════════════════════════════ */
+
+.gpu-accelerated {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Used by: SingularityHero.tsx sidebar */
+.gpu-blur {
+  will-change: backdrop-filter;
+  transform: translateZ(0);
+}
+
+/* ═══════════════════════════════════════════ */
+/*  CYAN PULSE ANIMATION                       */
+/*  Used by: SurgicalMirror.tsx CodeLine        */
+/*  Triggers on code-patch highlight            */
+/* ═══════════════════════════════════════════ */
+
+@keyframes cyanPulse {
+  0% {
+    text-shadow: 0 0 8px rgba(0, 240, 255, 0.8), 0 0 20px rgba(0, 240, 255, 0.4);
+    color: #00F0FF;
+  }
+
+  50% {
+    text-shadow: 0 0 16px rgba(0, 240, 255, 1), 0 0 40px rgba(0, 240, 255, 0.6);
+    color: #00F0FF;
+  }
+
+  100% {
+    text-shadow: 0 0 0px transparent;
+    color: rgba(255, 255, 255, 0.7);
+  }
+}
+
+.cyan-pulse {
+  animation: cyanPulse 1.2s ease-out forwards;
+}
+
+/* ═══════════════════════════════════════════ */
+/*  HARDWARE BORDER                            */
+/*  Used by: page.tsx — LocalFirst visual,     */
+/*  KineticNavigation terminal, EventHorizon   */
+/*  input card. Adds a subtle gradient-edge    */
+/*  glow. Works WITH Tailwind border classes.  */
+/* ═══════════════════════════════════════════ */
+
+.hardware-border {
+  position: relative;
+}
+
+.hardware-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.08) 0%,
+      transparent 50%,
+      rgba(0, 240, 255, 0.04) 100%);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════ */
+/*  CUSTOM TRACKING UTILITIES                  */
+/*  Used by: page.tsx hero h1 (tracking-display) */
+/* ═══════════════════════════════════════════ */
+
+@utility tracking-display {
+  letter-spacing: -0.06em;
+}
+
+@utility tracking-body {
+  letter-spacing: -0.01em;
+}
